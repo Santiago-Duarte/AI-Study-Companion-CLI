@@ -71,6 +71,16 @@ class AiClientTestCase(unittest.TestCase):
 
     @patch("src.ai_client.genai.Client")
     def test_generate_summary_api_error_raises_runtime_error(self, mock_genai_client):
+        """
+        Prueba que los errores de la API se conviertan en RuntimeError.
+
+        Simula un error de red (500) en la API de Gemini y verifica que
+        la función capture la excepción y la convierta en un RuntimeError
+        con un mensaje descriptivo apropiado.
+
+        Args:
+            mock_genai_client: Mock del cliente de Gemini inyectado por el decorator.
+        """
         mock_client_instance = mock_genai_client.return_value
         mock_client_instance.models.generate_content.side_effect = Exception("Error de red 500")
 
