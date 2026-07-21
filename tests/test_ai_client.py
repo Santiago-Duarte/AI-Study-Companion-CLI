@@ -29,6 +29,14 @@ class AiClientTestCase(unittest.TestCase):
         self.api_key = "fake_test_key_123"
 
     def test_api_key_not_found(self):
+        """
+        Prueba que se lance ValueError cuando no hay API key disponible.
+
+        Verifica que la función generate_summary lance una excepción ValueError
+        cuando no se proporciona una API key ni por parámetro ni por variable
+        de entorno, limpiando completamente el entorno para asegurar que no
+        haya ninguna variable de configuración.
+        """
         with patch.dict("os.environ", {} ,clear=True):
             with self.assertRaises(ValueError):
                 generate_summary("Fragmento de texto", None)
