@@ -43,7 +43,17 @@ class AiClientTestCase(unittest.TestCase):
 
     @patch("src.ai_client.genai.Client")
     def test_generate_summary_success(self, mock_genai_client):
-        """Simula una llamada exitosa a la API de Gemini"""
+        """
+        Prueba una llamada exitosa a la API de Gemini.
+
+        Simula una respuesta exitosa de la API de Gemini y verifica que:
+        1. La función retorne el resumen correcto
+        2. El método generate_content se llame exactamente una vez
+        3. La respuesta se procese correctamente
+
+        Args:
+            mock_genai_client: Mock del cliente de Gemini inyectado por el decorator.
+        """
         # 1. Configurar la respuesta simulada (Mock)
         mock_response = MagicMock()
         mock_response.text = "## Resumen de prueba\n- Punto clave 1"
