@@ -83,6 +83,17 @@ class TestFormatter(unittest.TestCase):
     @patch("src.formatter.ensure_directory_exists")
     @patch('builtins.open', new_callable=mock_open)
     def test_save_duocards_csv_writes_valid_data(self, mock_file, mock_ensure_dir):
+        """
+        Prueba que save_duocards_csv escriba datos válidos en formato CSV.
+
+        Verifica que la función abra el archivo con los parámetros correctos
+        y escriba las tarjetas de estudio en formato CSV con el encabezado
+        apropiado ("question", "answer").
+
+        Args:
+            mock_file: Mock de la función open para simular escritura de archivos.
+            mock_ensure_dir: Mock de ensure_directory_exists para omitir creación de directorios.
+        """
         save_duocards_csv(self.csv_falso, self.ruta_prueba)
         mock_file.assert_called_once_with(self.ruta_prueba, "w", encoding="utf-8", newline="")
         mock_file().write.assert_called()
