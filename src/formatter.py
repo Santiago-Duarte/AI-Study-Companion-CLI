@@ -36,8 +36,29 @@ def save_markdown_summary(content: str, output_path: str) -> None:
 
 
 def save_duocards_csv(cards: list[tuple[str, str]], output_path: str) -> None:
-    """Recibe una lista de tuplas (pregunta, respuesta) y la exporta a CSV en formato compatible."""
+    """
+    Exporta tarjetas de estudio a formato CSV compatible con DuoCards/Anki.
 
+    Esta función recibe una lista de tuplas (pregunta, respuesta) y la guarda
+    en un archivo CSV con el formato específico requerido por DuoCards y Anki.
+    Incluye una fila de encabezado con "question" y "answer".
+
+    Args:
+        cards (list[tuple[str, str]]): Lista de tuplas donde cada tupla contiene
+                                       una pregunta y su respuesta correspondiente.
+        output_path (str): La ruta del archivo CSV donde se guardarán las tarjetas.
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: Si la lista de tarjetas está vacía.
+
+    Example:
+        >>> cards = [("¿Capital de Francia?", "París"), ("¿2+2?", "4")]
+        >>> save_duocards_csv(cards, "output/tarjetas.csv")
+        Las tarjetas se han guardado en output/tarjetas.csv
+    """
     if not cards:
         raise ValueError("La lista de tarjetas no puede estar vacía.")
 
@@ -52,7 +73,24 @@ def save_duocards_csv(cards: list[tuple[str, str]], output_path: str) -> None:
 
 
 def ensure_directory_exists(path: str):
-    """Extrae el directorio padre de un path dado."""
+    """
+    Asegura que el directorio padre de una ruta exista, creándolo si es necesario.
+
+    Esta función extrae el directorio padre de la ruta proporcionada y
+    crea el directorio si no existe. Es útil para garantizar que se pueda
+    escribir archivos en rutas que incluyen directorios que aún no existen.
+
+    Args:
+        path (str): La ruta del archivo para la cual se debe asegurar
+                    que el directorio padre exista.
+
+    Returns:
+        None
+
+    Example:
+        >>> ensure_directory_exists("output/archivos/resumen.md")
+        # Crea el directorio "output/archivos" si no existe
+    """
     directorio_padre = os.path.dirname(path)
 
     if directorio_padre and not os.path.exists(directorio_padre):
