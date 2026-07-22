@@ -32,6 +32,16 @@ class TestFormatter(unittest.TestCase):
     @patch("os.makedirs")
     @patch("os.path.exists")
     def test_ensure_directory_exist_create_dir(self, mock_exists, mock_makedirs):
+        """
+        Prueba que ensure_directory_exists cree el directorio cuando no existe.
+
+        Simula un escenario donde el directorio padre no existe y verifica
+        que se llame a os.makedirs con el directorio correcto.
+
+        Args:
+            mock_exists: Mock de os.path.exists que retorna False.
+            mock_makedirs: Mock de os.makedirs para verificar la llamada.
+        """
         mock_exists.return_value = False
         ensure_directory_exists("test/archivo.md")
         mock_makedirs.assert_called_with("test")
