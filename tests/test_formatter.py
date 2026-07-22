@@ -72,6 +72,10 @@ class TestFormatter(unittest.TestCase):
     def test_save_duocards_csv_empty_list_raises_error(self):
         """
         Prueba que save_duocards_csv lance ValueError cuando la lista de tarjetas está vacía.
+
+        Verifica que la función valide la entrada y lance una excepción ValueError
+        cuando se intenta guardar una lista vacía de tarjetas, evitando así
+        la creación de archivos CSV vacíos o inválidos.
         """
         with self.assertRaises(ValueError):
             save_duocards_csv([], "output/tarjetas.csv")
