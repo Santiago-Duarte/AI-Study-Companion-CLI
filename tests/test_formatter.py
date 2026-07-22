@@ -49,16 +49,23 @@ class TestFormatter(unittest.TestCase):
     @patch("src.formatter.ensure_directory_exists")  # Para omitir la revisión del directorio
     @patch("builtins.open", new_callable=mock_open)
     def test_save_markdown_summary_writes_content(self, mock_file, mock_ensure_dir):
-        # 1. Definir los datos de prueba
+        """
+        Prueba que save_markdown_summary escriba el contenido correctamente.
 
+        Verifica que la función abra el archivo con los parámetros correctos
+        y escriba el contenido proporcionado en el archivo.
 
-        # 2. Llamar a la función
+        Args:
+            mock_file: Mock de la función open para simular escritura de archivos.
+            mock_ensure_dir: Mock de ensure_directory_exists para omitir creación de directorios.
+        """
+        # 1. Llamar a la función con los datos de prueba
         save_markdown_summary(self.contenido_prueba, self.ruta_prueba)
 
-        # 3. Comprobar que open() se llamó con la ruta y los argumentos correctos
+        # 2. Comprobar que open() se llamó con la ruta y los argumentos correctos
         mock_file.assert_called_once_with(self.ruta_prueba, "w", encoding="utf-8", newline="")
 
-        # 4. Comprobar que write() se llamó con el contenido esperado
+        # 3. Comprobar que write() se llamó con el contenido esperado
         mock_file().write.assert_called_once_with(self.contenido_prueba)
 
 
