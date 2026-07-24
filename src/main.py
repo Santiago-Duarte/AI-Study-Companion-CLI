@@ -113,12 +113,19 @@ def run_pipeline(video_url: str, output_dir: str) -> None:
 
 
 def main():
+    """
+    Función principal del programa.
+
+    Solicita al usuario la URL de un video de YouTube, abre un diálogo
+    para seleccionar el directorio de salida, y ejecuta el pipeline de
+    procesamiento si se selecciona un directorio válido.
+    """
     video_url = input("Ingrese la URL del video: ").strip()
 
     root = tk.Tk()
     root.withdraw()
     output_dir = filedialog.askdirectory(title="Selecciona el directorio de salida")
-    root.destroy()  # 👈 Libera la ventana emergente correctamente
+    root.destroy()  # Libera la ventana emergente correctamente
 
     if output_dir:
         run_pipeline(video_url, output_dir)
