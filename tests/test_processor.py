@@ -31,7 +31,7 @@ class TestProcessor(unittest.TestCase):
         self.texto_corto = "Hola mundo esto es un test"
         self.texto_vacio = "    "
         # Usamos .strip() para eliminar el espacio final descolgado
-        self.texto_final = ("palabra " * 200).strip()
+        self.texto_final = ("palabra " * 2000).strip()
 
     def test_chunk_text(self):
         """
