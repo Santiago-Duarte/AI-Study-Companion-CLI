@@ -124,7 +124,24 @@ def generate_flashcards(text_chunk: str, api_key: str | None = None) -> list[tup
 
 
 def parse_flashcards_response(raw_text: str) -> list[tuple[str, str]]:
-    """Convierte la respuesta en texto plano de Gemini en una lista de tuplas (pregunta, respuesta)."""
+    """
+    Convierte la respuesta en texto plano de Gemini en una lista de tuplas (pregunta, respuesta).
+
+    Esta función procesa el texto plano generado por la API de Gemini y extrae
+    las tarjetas de estudio separadas por el delimitador '|||'. Filtra líneas
+    que no contienen el delimitador o que tienen campos vacíos.
+
+    Args:
+        raw_text (str): El texto plano de respuesta de la API de Gemini.
+
+    Returns:
+        list[tuple[str, str]]: Una lista de tuplas donde cada tupla contiene
+                               una pregunta y su respuesta correspondiente.
+
+    Example:
+        >>> parse_flashcards_response("¿Qué es X?|||Respuesta X\\n¿Qué es Y?|||Respuesta Y")
+        [("¿Qué es X?", "Respuesta X"), ("¿Qué es Y?", "Respuesta Y")]
+    """
     cards = []
     for line in raw_text.strip().splitlines():
         if "|||" in line:
