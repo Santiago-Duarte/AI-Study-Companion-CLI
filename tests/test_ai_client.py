@@ -7,7 +7,7 @@ correcto de la función generate_summary que interactúa con la API de Gemini.
 
 import unittest
 from unittest.mock import patch, MagicMock
-from src.ai_client import generate_summary
+from src.ai_client import generate_summary, parse_flashcards_response
 
 
 class AiClientTestCase(unittest.TestCase):
@@ -112,3 +112,33 @@ class AiClientTestCase(unittest.TestCase):
         # Verificamos que genai.Client se haya inicializado con la llave del entorno
         mock_genai_client.assert_called_once_with(api_key="fake_env_key")
         self.assertEqual(resultado, "Resumen ok")
+
+
+    def test_parse_flashcards_response_valid_and_invalid_lines(self):
+        """
+        Prueba que parse_flashcards_response maneje líneas válidas e inválidas correctamente.
+
+        Verifica que la función filtre líneas sin el delimitador '|||', líneas vacías,
+        y extraiga correctamente las tarjetas válidas del texto de respuesta de la IA.
+        También prueba que funcione con diferentes formatos de espaciado alrededor del delimitador.
+        """
+        # Texto de respuesta simulado que incluye:
+        # 1. Caso válido con espacios alrededor del delimitador
+        # 2. Línea sin delimitador (basura que la IA podría incluir)
+        # 3. Línea vacía
+        # 4. Segundo caso válido sin espacios alrededor del delimitador
+        raw_response = """
+        ¿Qué es una variable? ||| Es un espacio en memoria para almacenar datos.
+        Esta es una línea de texto libre que la IA metió por error.
+
+        ¿Qué es un bucle?|||Una estructura de control repetitiva.
+        """
+
+        esperado = [
+            ("¿Qué es una variable?", "Es un espacio en memoria para almacenar datos."),
+            ("¿Qué es un bucle?", "Una estructura de control repetitiva.")
+        ]
+
+        resultado = parse_flashcards_response(raw_response)
+
+        self.assertEqual(resultado, esperado)
