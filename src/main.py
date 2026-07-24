@@ -69,13 +69,28 @@ def procesar_flashcards_completas(chunks: list[str]) -> list[tuple[str, str]]:
 
 def run_pipeline(video_url: str, output_dir: str) -> None:
     """
-    Orquesta todo el flujo de trabajo sin bloqueos interactivos.
+    Orquesta el flujo completo de trabajo para procesar un video de YouTube.
+
+    Esta función coordina todo el pipeline: extracción de la transcripción,
+    fragmentación del texto, generación de tarjetas de estudio y guardado
+    de los resultados en el directorio especificado.
+
+    Args:
+        video_url (str): La URL del video de YouTube a procesar.
+        output_dir (str): El directorio donde se guardarán los archivos de salida.
+
+    Returns:
+        None
+
+    Note:
+        Actualmente solo genera tarjetas de estudio. La generación de resúmenes
+        está comentada en el código.
     """
     if not output_dir:
         print("❌ No se seleccionó ningún directorio de salida.")
         return
 
-    print("Extrayendo la transcripción...7<")
+    print("Extrayendo la transcripción...")
     video_id = get_video_id(video_url)
     transcript = extract_transcript(video_id)
 
