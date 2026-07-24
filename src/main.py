@@ -87,7 +87,7 @@ def run_pipeline(video_url: str, output_dir: str) -> None:
         está comentada en el código.
     """
     if not output_dir:
-        print("❌ No se seleccionó ningún directorio de salida.")
+        print("No se seleccionó ningún directorio de salida.")
         return
 
     print("Extrayendo la transcripción...")
