@@ -101,9 +101,9 @@ def run_pipeline(video_url: str, output_dir: str) -> None:
     path_resumen = os.path.join(output_dir, "resumen.md")
     path_tarjetas = os.path.join(output_dir, "tarjetas.csv")
 
-    #print("Se esta generando el resumen: ")
-    #resumen_final = procesar_resumen_completo(chunks)
-    #save_markdown_summary(resumen_final, path_resumen)
+    print("Se esta generando el resumen: ")
+    resumen_final = procesar_resumen_completo(chunks)
+    save_markdown_summary(resumen_final, path_resumen)
 
     print("Se esta generando la flashcard: ")
     tarjetas_finales = procesar_flashcards_completas(chunks)
