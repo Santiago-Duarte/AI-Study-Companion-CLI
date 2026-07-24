@@ -7,7 +7,7 @@ notas de estudio.
 """
 
 
-def chunk_text(text: str, max_chars: int = 1000) -> list[str]:
+def chunk_text(text: str, max_chars: int = 10000) -> list[str]:
     """
     Divide un texto largo en fragmentos más pequeños respetando límites de caracteres.
 
