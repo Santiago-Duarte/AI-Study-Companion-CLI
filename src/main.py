@@ -44,7 +44,21 @@ def procesar_resumen_completo(chunks: list[str]) -> str:
 
 
 def procesar_flashcards_completas(chunks: list[str]) -> list[tuple[str, str]]:
-    """Acumula las flashcards generadas a partir de todos los chunks."""
+    """
+    Procesa múltiples chunks de texto para generar tarjetas de estudio completas.
+
+    Esta función itera sobre una lista de fragmentos de texto, genera
+    tarjetas de estudio (flashcards) para cada uno usando la API de Gemini,
+    y acumula todas las tarjetas en una sola lista.
+
+    Args:
+        chunks (list[str]): Lista de fragmentos de texto a procesar.
+
+    Returns:
+        list[tuple[str, str]]: Una lista acumulada de todas las tarjetas
+                               generadas, donde cada tarjeta es una tupla
+                               (pregunta, respuesta).
+    """
     todas_las_tarjetas = []
     for chunk in chunks:
         if chunk:
