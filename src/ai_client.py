@@ -104,13 +104,14 @@ def generate_flashcards(text_chunk: str, api_key: str | None = None, max_retries
     client = genai.Client(api_key=key)
 
     prompt = (
-        "Eres un asistente educativo especializado en crear tarjetas de memoria (flashcards) para Anki/DuoCards. "
-        "A partir de la siguiente transcripción, genera preguntas y respuestas directas sobre los conceptos clave.\n\n"
-        "REGLAS STRICTAS DE FORMATO:\n"
-        "- Genera una tarjeta por línea.\n"
-        "- Usa exactamente el delimitador '|||' para separar la pregunta de la respuesta.\n"
-        "- Ejemplo: ¿Qué es una variable?|||Es un espacio en memoria para almacenar datos.\n"
-        "- No incluyas viñetas, números, títulos ni formato Markdown adicional.\n\n"
+        "Eres un asistente educativo de alto rendimiento especializado en síntesis extrema. "
+        "Resume el siguiente fragmento de transcripción de YouTube.\n\n"
+        "REGLAS OBLIGATORIAS:\n"
+        "- Sé ultra conciso y ve directo al punto.\n"
+        "- Extrae únicamente de 3 a 5 puntos clave (bullet points).\n"
+        "- Cada punto debe ser una sola oración clara y directa.\n"
+        "- No agregues introducciones, conclusiones ni texto de relleno.\n"
+        "- Usa formato Markdown.\n\n"
         f"Transcripción:\n{text_chunk}"
     )
 
